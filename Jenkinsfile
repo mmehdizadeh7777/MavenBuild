@@ -7,7 +7,7 @@ pipeline {
 		maven 'local-maven'
 	}
 	parameters {
-		booleanParam(Name: 'executeTest', defaultValue: true, description: '')
+		booleanParam(name: 'executeTest', defaultValue: true, description: '')
 	}
 
     stages {
