@@ -31,7 +31,7 @@ pipeline {
 	    stage('deploy') {
             steps {
                 echo 'deploying....'
-		withCredentials([usernamePassword(credentials:'github_creds', usernameVariable: USER, passwordVariable: PASS)])
+		withCredentials([usernamePassword(credentials:'github_creds', usernameVariable: 'USER', passwordVariable: 'PASS')])
 		    {            
 			    sh "docker login ${USER} ${PASS}"
 		    }
