@@ -2,6 +2,7 @@ pipeline {
     agent any
 	environment{
 		NEW_VERSION = '1.0.3'
+		DOCKERHUB_CREDENTIALS = credentials('dockerhub_creds')
 	}
 	tools {
 		maven 'local-maven'
@@ -31,10 +32,7 @@ pipeline {
 	    stage('deploy') {
             steps {
                 echo 'deploying....'
-		withCredentials([usernamePassword(credentials:'github_creds', usernameVariable: 'USER', passwordVariable: 'PASS')])
-		    {            
-			    sh "docker login ${USER} ${PASS}"
-		    }
+		sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
 	    }
         }
     }
