@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'building....'
 		echo "building version ${NEW_VERSION}"
-		sh "mvn install"
+		//sh "mvn install"
             }
         }
 	    stage('test') {
