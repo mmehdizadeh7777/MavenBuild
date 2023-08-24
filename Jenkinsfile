@@ -2,10 +2,7 @@
 @Library('jenkins-shared-library')_
 pipeline {
     agent any
-	environment{
-		NEW_VERSION = '1.0.3'
-		DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-	}
+	
 	tools {
 		maven 'local-maven'
 	}
