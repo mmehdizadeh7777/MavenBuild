@@ -2,7 +2,7 @@
 @Library('jenkins-shared-library')_
 pipeline {
     agent any
-	
+
 	tools {
 		maven 'local-maven'
 	}
@@ -31,7 +31,7 @@ pipeline {
 	    stage('build and push image') {
             steps {
                  script {
-                     buildimage()
+                     buildimage 'mmehdizadeh7777/maven-example:1.2'
                   }
 	        }
         }
