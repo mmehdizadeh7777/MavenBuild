@@ -24,12 +24,16 @@ pipeline {
                 sh 'mvn build-helper:parse-version versions:set \
                     -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
                      versions:commit'
+                def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+                def version = matcher [0][1]
+                enc.IMAGE_NAME = "$version-$BUILD_NUMBER "
                 }
             }
         }
         stage('build') {
             steps {
                 script {
+                    sh 'mvn clean package'
                     buildjar()
                 }
             }
@@ -47,7 +51,7 @@ pipeline {
 	    stage('build and push image') {
             steps {
                  script {
-                     buildimage 'mmehdizadeh7777/maven-example:1.2'
+                     buildimage "mmehdizadeh7777/maven-example:$IMAGE_NAME"
                   }
 	        }
         }
