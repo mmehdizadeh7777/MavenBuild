@@ -51,7 +51,7 @@ pipeline {
 	    stage('build and push image') {
             steps {
                  script {
-                     buildimage "mmehdizadeh7777/maven-example:$IMAGE_NAME"
+                     buildimage "mmehdizadeh7777/maven-example:${IMAGE_NAME}"
                   }
 	        }
         }
