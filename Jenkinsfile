@@ -56,10 +56,13 @@ pipeline {
                   }
 	        }
         }
-        stage('commit version update') {
+        stage('deploy') {
                     steps {
+                    def dockerCmd = 'docker run -p 3080:3080 -d mmehdizadeh7777/maven-example:1.2'
                         script {
-                            gitcommit()
+                           sshagent(['ec2-key']) {
+                              sh "ssh  -o StrictHostKeyChecking=no ubuntu@18.212.143.174 ${dockerCmd}"
+                           }
                         }
                     }
                 }
