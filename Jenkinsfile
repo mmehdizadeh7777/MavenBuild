@@ -63,7 +63,7 @@ pipeline {
                             echo 'deploying docker image to EC2...'
                             def dockerCmd = 'docker run -p 8080:8080 -d mmehdizadeh7777/maven-example:${IMAGE_NAME}'
                            sshagent(['ec2-key']) {
-                              sh "ssh  -o StrictHostKeyChecking=no ubuntu@18.212.143.174 ${dockerCmd}"
+                              sh "ssh  -o StrictHostKeyChecking=no ubuntu@54.173.115.81 ${dockerCmd}"
                            }
                         }
                     }
