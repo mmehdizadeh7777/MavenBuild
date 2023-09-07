@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  MavenBuild:
+    image: mmehdizadeh7777/maven-example:1.0
+    ports:
+      - 8080:8080
+  Postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=my-pwd

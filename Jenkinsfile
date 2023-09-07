@@ -61,8 +61,10 @@ pipeline {
 
                         script {
                             echo 'deploying docker image to EC2...'
-                            def dockerCmd = 'docker run -p 8080:8080 -d mmehdizadeh7777/maven-example:${IMAGE_NAME}'
+                            //def dockerCmd = 'docker run -p 8080:8080 -d mmehdizadeh7777/maven-example:${IMAGE_NAME}'
+                           def dockerCmd = "docker-compose -f docker-compose.yml up --detach"
                            sshagent(['ec2-key-pair']) {
+                              sh "scp docker-compose.yml ubuntu@54.173.115.81:/home/ubuntu"
                               sh "ssh  -o StrictHostKeyChecking=no ubuntu@54.173.115.81 ${dockerCmd}"
                            }
                         }
